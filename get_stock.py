@@ -11,7 +11,7 @@ class Supreme:
 	def __init__(self):
 		self.headers = {'user-agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36'}
 		self.totalstock = 0
-	
+
 	def get_stock(self,link,p):
 		a = r.get(link,headers=self.headers)
 		b = json.loads(a.text)
@@ -33,16 +33,15 @@ class Supreme:
 			if p == True:
 				print ('\n\n')
 
-	
+
 	def monitor(self,link):
 		while self.totalstock == 0:
 			try:
 				self.get_stock(link,p=False)
-				if self.get_stock != 0:
+				if self.totalstock == 0:
 					print ('--- CHECK STATUS --- OUT OF STOCK %s'%UTCtoEST())
 					time.sleep(int(self.interval))
 					self.monitor(link)
-					#self.get_stock(link)
 				else:
 					##INSERT SLACK / TWITTER / CHECKOUT FUNCTION HERE
 					print('--- RESTOCK --- %s -- %s'%(link,UTCtoEST()))
@@ -66,4 +65,3 @@ class Supreme:
 
 instance = Supreme()
 instance.prompt()
-
