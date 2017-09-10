@@ -14,6 +14,7 @@ class Supreme:
 
 	def get_stock(self,link,p):
 		a = r.get(link,headers=self.headers)
+		print (a.status_code)
 		b = json.loads(a.text)
 		info = b[u'styles']
 		for value in info:
