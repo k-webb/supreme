@@ -62,7 +62,13 @@ class Supreme:
 			else:
 				print (restock_answer)
 				sys.exit()
+def main():
+	instance = Supreme()
+	try:
+		instance.prompt()
+	except Exception as mainerror:
+		print ('MAIN ERROR')
+		print (mainerror)
 
-
-instance = Supreme()
-instance.prompt()
+if __name__ == '__main__':
+	main()
