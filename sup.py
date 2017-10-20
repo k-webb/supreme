@@ -101,7 +101,11 @@ class Supreme:
 	def prompt(self):
 		link = input('Please Enter A Link To Monitor..\n')
 		link = str(link)+'.json'
-		self.get_stock(link,p=True)
+		try:
+			self.get_stock(link,p=True)
+		except Exception as get_stock_error:
+			print (get_stock_error)
+			pass
 		print ('{0} {1}'.format('TOTAL STOCK - ',self.totalstock))
 		if self.totalstock == 0:
 			restock_answer = input('This product is out of stock, start restock mode? Enter - (y/n)\n')
